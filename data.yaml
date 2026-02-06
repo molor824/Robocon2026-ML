@@ -1,0 +1,67 @@
+path: ../Robocon2026Simulation/.datasets
+train: images/train
+val: images/val
+
+names:
+  0: RedReal1
+  1: RedReal2
+  2: RedReal3
+  3: RedReal4
+  4: RedReal5
+  5: RedReal6
+  6: RedReal7
+  7: RedReal8
+  8: RedReal9
+  9: RedReal10
+  10: RedReal11
+  11: RedReal12
+  12: RedReal13
+  13: RedReal14
+  14: RedReal15
+  15: RedFake1
+  16: RedFake2
+  17: RedFake3
+  18: RedFake4
+  19: RedFake5
+  20: RedFake6
+  21: RedFake7
+  22: RedFake8
+  23: RedFake9
+  24: RedFake10
+  25: RedFake11
+  26: RedFake12
+  27: RedFake13
+  28: RedFake14
+  29: RedFake15
+  30: RedR1
+  31: BlueReal1
+  32: BlueReal2
+  33: BlueReal3
+  34: BlueReal4
+  35: BlueReal5
+  36: BlueReal6
+  37: BlueReal7
+  38: BlueReal8
+  39: BlueReal9
+  40: BlueReal10
+  41: BlueReal11
+  42: BlueReal12
+  43: BlueReal13
+  44: BlueReal14
+  45: BlueReal15
+  46: BlueFake1
+  47: BlueFake2
+  48: BlueFake3
+  49: BlueFake4
+  50: BlueFake5
+  51: BlueFake6
+  52: BlueFake7
+  53: BlueFake8
+  54: BlueFake9
+  55: BlueFake10
+  56: BlueFake11
+  57: BlueFake12
+  58: BlueFake13
+  59: BlueFake14
+  60: BlueFake15
+  61: BlueR1

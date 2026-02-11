@@ -1,10 +1,10 @@
+import struct
 import traceback
 from io import BytesIO
 from ultralytics import YOLO
 from model_loader import load_best
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from PIL import Image
-import json
 
 HOST = "localhost"
 PORT = 3445
@@ -19,7 +19,11 @@ class Handler(BaseHTTPRequestHandler):
             img = Image.open(BytesIO(img_data))
 
             results = model.predict(img)
-            data = f"[{",".join([r.to_json(normalize=True) for r in results])}]".encode()
+            data = b''.join(
+                struct.pack("!Ifffff", int(cls.item()), conf.item(), *xywhn.tolist())
+                    for result in results for cls, conf, xywhn in
+                        zip(result.boxes.cls, result.boxes.conf, result.boxes.xywhn)
+            )
 
             self.send_response(200)
             self.send_header("Content-Type", "text/json")

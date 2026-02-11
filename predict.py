@@ -20,7 +20,7 @@ class Handler(BaseHTTPRequestHandler):
 
             results = model.predict(img)
             data = b''.join(
-                struct.pack("!Ifffff", int(cls.item()), conf.item(), *xywhn.tolist())
+                struct.pack("!Bfffff", int(cls.item()), conf.item(), *xywhn.tolist())
                     for result in results for cls, conf, xywhn in
                         zip(result.boxes.cls, result.boxes.conf, result.boxes.xywhn)
             )

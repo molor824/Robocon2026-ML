@@ -24,28 +24,41 @@ SRC_IMG_PATHS = [os.path.join(directory, path) for directory in SRC_IMG_DIRS for
 SRC_LABEL_PATHS = [os.path.join(directory, path) for directory in SRC_LABEL_DIRS for path in os.listdir(directory)]
 
 def main():
-    for path in SRC_IMG_DIRS:
-        os.makedirs(path.replace("images", "augmented/images"), exist_ok=True)
-    for path in SRC_LABEL_DIRS:
-        os.makedirs(path.replace("labels", "augmented/labels"), exist_ok=True)
+    for img_path in SRC_IMG_DIRS:
+        os.makedirs(img_path.replace("images", "augmented/images"), exist_ok=True)
+    for img_path in SRC_LABEL_DIRS:
+        os.makedirs(img_path.replace("labels", "augmented/labels"), exist_ok=True)
     
     save = False
-    for path in SRC_IMG_PATHS:
-        img = cv.imread(path)
-        dst_path = path.replace("images", "augmented/images")
-        augmented = add_contrast(img, np.random.randn() * 0.1 + 1, np.random.randn(3) * (5, 10, 5))
-        augmented = add_gaussian_noise(augmented, np.random.randn() * 0.1, max(0.0, np.random.randn() * 5 + 10))
-        augmented = add_blur(augmented, np.random.randint(0, 3) * 2 + 1)
-        cv.imshow("Image", img)
-        cv.imshow("Augmented", augmented)
+    try:
+        for img_path, label_path in zip(SRC_IMG_PATHS, SRC_LABEL_PATHS):
+            img = cv.imread(img_path)
+            with open(label_path, "r") as f:
+                label = f.read()
+            dst_img_path = img_path.replace("images", "augmented/images")
+            dst_label_path = label_path.replace("labels", "augmented/labels")
+            augmented = add_contrast(img, np.random.randn() * 0.1 + 1, np.random.randn(3) * (5, 10, 5))
+            augmented = add_gaussian_noise(augmented, np.random.randn() * 0.1, max(0.0, np.random.randn() * 5 + 10))
+            augmented = add_blur(augmented, np.random.randint(0, 3) * 2 + 1)
 
-        cv.imwrite(dst_path, img)
+            print(f"Saved to {dst_img_path}")
+            with open(dst_label_path, "w") as f:
+                f.write(label)
+            cv.imwrite(dst_img_path, img)
 
-        key = cv.waitKey(1 if save else 0)
-        if key == ord('q'):
-            break
-        elif key == ord('s'): # Save all image
-            save = True
+            if not save:
+                cv.imshow("Image", img)
+                cv.imshow("Augmented", augmented)
+
+                key = cv.waitKey(0)
+                if key == ord('q'):
+                    break
+                elif key == ord('s'): # Save all image
+                    save = True
+    except KeyboardInterrupt:
+        pass
+    finally:
+        cv.destroyAllWindows()
 
 if __name__ == "__main__":
     main()

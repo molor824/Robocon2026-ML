@@ -3,4 +3,5 @@ __pycache__
 .test.py
 .idea
 *_ncnn_model
+yolo26n.pt
 results/

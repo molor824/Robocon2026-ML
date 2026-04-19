@@ -1,6 +1,11 @@
 path: ../Robocon2026Simulation/.datasets
-train: images/train
-val: images/val
+train:
+  - images/train
+  - augmented/images/train
+val:
+  - images/val
+  - augmented/images/val
+test: images/test
 
 names:
   0: RedReal1

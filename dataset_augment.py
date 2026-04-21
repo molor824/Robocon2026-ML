@@ -44,7 +44,7 @@ def main():
             print(f"Saved to {dst_img_path}")
             with open(dst_label_path, "w") as f:
                 f.write(label)
-            cv.imwrite(dst_img_path, img)
+            cv.imwrite(dst_img_path, augmented)
 
             if not save:
                 cv.imshow("Image", img)

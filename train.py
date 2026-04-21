@@ -9,7 +9,7 @@ def main():
         # path = "yolo12n.pt"
         # print(f"Starting from new weight {path}")
 
-    model = YOLO("yolo26n.pt")
+    model = YOLO("yolo12n.pt")
     model.train(data="data.yaml", epochs=100, imgsz=640, save=True, batch=-1)
 
 if __name__ == "__main__":

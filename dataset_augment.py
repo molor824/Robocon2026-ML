@@ -17,7 +17,7 @@ def add_blur(image: cv.Mat, ksize=3):
 
 DATASET_PATH = "../Robocon2026Simulation/.datasets"
 
-SRC_IMG_DIRS = [os.path.join(DATASET_PATH, "images/train"), os.path.join(DATASET_PATH, "images/val")]
+SRC_IMG_DIRS = [os.path.join(DATASET_PATH, "images/train"), os.path.join(DATASET_PATH, "images/val"), os.path.join(DATASET_PATH, "images/test")]
 SRC_LABEL_DIRS = [path.replace("images", "labels") for path in SRC_IMG_DIRS]
 
 SRC_IMG_PATHS = [os.path.join(directory, path) for directory in SRC_IMG_DIRS for path in os.listdir(directory)]

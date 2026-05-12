@@ -5,7 +5,9 @@ train:
 val:
   - images/val
   - augmented/images/val
-test: images/test
+test:
+  - images/test
+  - augmented/images/test
 
 names:
   0: RedReal1

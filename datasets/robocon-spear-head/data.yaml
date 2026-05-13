@@ -1,0 +1,14 @@
+task: detect
+name: Robocon spear head
+description: Robocon
+bytes: 445496645
+url: https://platform.ultralytics.com/tselmeg-tamir/datasets/robocon-spear-head
+version: latest
+created_at: '2026-05-12T12:23:45.232Z'
+updated_at: '2026-05-12T13:16:09.591Z'
+names:
+  0: Spearhead
+test: images/test
+train: images/train
+val: images/val
+hash: bf3fb46b25c57456

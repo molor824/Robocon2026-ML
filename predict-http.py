@@ -44,7 +44,7 @@ def main():
     global model
     server = HTTPServer((HOST, PORT), Handler)
     try:
-        model = YOLO(load_best())
+        model = YOLO("runs/detect/train2/weights/best.pt")
         print(f"Server started http://{HOST}:{PORT}")
         server.serve_forever()
     except KeyboardInterrupt:

@@ -12,7 +12,7 @@ def predict(img_queue: mp.Queue, results_queue: mp.Queue):
     try:
         while True:
             img = img_queue.get()
-            results_queue.put(list(model.predict(img, stream=True)))
+            results_queue.put(list(model.predict(img, stream=True, conf=CONF_THRESHOLD)))
     except KeyboardInterrupt:
         pass
 
@@ -47,7 +47,6 @@ def main():
             if results is not None:
                 for result in results:
                     for cls, conf, xywh in zip(result.boxes.cls, result.boxes.conf, result.boxes.xywh):
-                        if conf < CONF_THRESHOLD: continue
                         cx, cy, bw, bh = xywh.tolist()
                         x1, y1 = int(cx - bw / 2), int(cy - bh / 2)
                         x2, y2 = int(cx + bw / 2), int(cy + bh / 2)
